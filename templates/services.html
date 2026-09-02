@@ -1,0 +1,149 @@
+{% include "header.html" %}
+
+<section class="services">
+
+    <div class="services-content">
+
+        <h1>Our Services</h1>
+
+        <p class="services-intro">
+            We provide modern and reliable services to help
+            businesses and individuals grow online.
+        </p>
+
+        <div class="service-cards">
+
+            <div class="service-card">
+                <h2>Web Development</h2>
+
+                <p>
+                    We build modern, responsive and
+                    user-friendly websites using the latest
+                    web technologies.
+                </p>
+
+                <a href="{% url 'about'%}" class="service-btn">
+                    Read More
+                </a>
+            </div>
+
+
+            <div class="service-card">
+                <h2>UI/UX Design</h2>
+
+                <p>
+                    We create clean and attractive designs
+                    that provide a smooth and enjoyable
+                    user experience.
+                </p>
+
+                <a href="{% url 'about'%}" class="service-btn">
+                    Read More
+                </a>
+            </div>
+
+
+            <div class="service-card">
+                <h2>Digital Marketing</h2>
+
+                <p>
+                    We help businesses reach more customers
+                    through effective digital marketing
+                    strategies.
+                </p>
+
+                <a href="{% url 'about'%}" class="service-btn">
+                    Read More
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<style>
+
+    .services {
+        min-height: 550px;
+        background-color: #f4f0ff;
+
+        padding: 70px 60px;
+        text-align: center;
+    }
+
+    .services-content {
+        max-width: 1100px;
+        margin: auto;
+    }
+
+    .services h1 {
+        font-size: 45px;
+        color: #5b21b6;
+        margin-bottom: 15px;
+    }
+
+    .services-intro {
+        font-size: 18px;
+        color: #555;
+        max-width: 700px;
+        margin: 0 auto 45px;
+        line-height: 1.7;
+    }
+
+    .service-cards {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+    }
+
+    .service-card {
+        background-color: white;
+
+        width: 320px;
+        padding: 35px 25px;
+
+        border-radius: 12px;
+
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+
+        transition: 0.3s;
+    }
+
+    .service-card:hover {
+        transform: translateY(-8px);
+    }
+
+    .service-card h2 {
+        color: #5b21b6;
+        margin-bottom: 15px;
+    }
+
+    .service-card p {
+        color: #666;
+        line-height: 1.7;
+        margin-bottom: 25px;
+    }
+
+    .service-btn {
+        display: inline-block;
+
+        background-color: #6c63ff;
+        color: white;
+
+        padding: 10px 20px;
+        border-radius: 6px;
+
+        text-decoration: none;
+    }
+
+    .service-btn:hover {
+        background-color: #4f46d8;
+    }
+
+</style>
+
+
+{% include "footer.html" %}

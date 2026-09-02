@@ -1,0 +1,69 @@
+{% include "header.html" %}
+
+<section class="home">
+
+    <div class="home-content">
+        <h1>Welcome to Our Website</h1>
+
+        <p>
+            Welcome to our website. We provide simple,
+            creative and modern solutions for everyone.
+        </p>
+
+        <a href="{% url 'about' %}" class="home-btn">
+            Learn More
+        </a>
+    </div>
+
+</section>
+
+
+<style>
+    .home {
+        min-height: 550px;
+        background-color: #f2f4ff;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        text-align: center;
+        padding: 50px;
+    }
+
+    .home-content {
+        max-width: 700px;
+    }
+
+    .home-content h1 {
+        font-size: 50px;
+        color: #29295c;
+        margin-bottom: 20px;
+    }
+
+    .home-content p {
+        font-size: 18px;
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 30px;
+    }
+
+    .home-btn {
+        display: inline-block;
+        background-color: #6c63ff;
+        color: white;
+
+        padding: 13px 25px;
+        border-radius: 7px;
+
+        text-decoration: none;
+        font-size: 16px;
+    }
+
+    .home-btn:hover {
+        background-color: #4f46d8;
+    }
+</style>
+
+
+{% include "footer.html" %}

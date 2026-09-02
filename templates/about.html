@@ -1,0 +1,96 @@
+{% include "header.html" %}
+
+<section class="about">
+
+    <div class="about-content">
+
+        <h1>About Us</h1>
+
+        <p>
+            We are a creative team focused on building
+            modern and user-friendly websites.
+        </p>
+
+        <div class="about-cards">
+
+            <div class="about-card">
+                <h2>Our Mission</h2>
+
+                <p>
+                    Our mission is to create useful,
+                    simple and powerful digital solutions.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <h2>Our Vision</h2>
+
+                <p>
+                    Our vision is to build better experiences
+                    through technology and creativity.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<style>
+    .about {
+        min-height: 550px;
+        background-color: #fff8ef;
+
+        padding: 70px 60px;
+        text-align: center;
+    }
+
+    .about-content {
+        max-width: 900px;
+        margin: auto;
+    }
+
+    .about-content h1 {
+        font-size: 45px;
+        color: #d35400;
+        margin-bottom: 20px;
+    }
+
+    .about-content > p {
+        font-size: 18px;
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 40px;
+    }
+
+    .about-cards {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+    }
+
+    .about-card {
+        background-color: white;
+        width: 350px;
+
+        padding: 30px;
+        border-radius: 10px;
+
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-card h2 {
+        color: #d35400;
+        margin-bottom: 15px;
+    }
+
+    .about-card p {
+        color: #666;
+        line-height: 1.6;
+    }
+</style>
+
+
+{% include "footer.html" %}
