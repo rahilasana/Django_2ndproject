@@ -1,0 +1,130 @@
+
+.contact {
+    min-height: 70vh;
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-content {
+    width: 100%;
+    max-width: 1000px;
+    text-align: center;
+}
+
+.contact-content h1 {
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.contact-intro {
+    max-width: 650px;
+    margin: 0 auto 45px;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.contact-container {
+    display: flex;
+    gap: 30px;
+    text-align: left;
+}
+
+.contact-info,
+.contact-form {
+    flex: 1;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f8f8f8;
+}
+
+.contact-info h2 {
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+
+.contact-info > p {
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.info-item {
+    margin-bottom: 20px;
+}
+
+.info-item h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.info-item p {
+    margin: 0;
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+.contact-form button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: #222;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.contact-form button:hover {
+    opacity: 0.8;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #222;
+}
+
+@media (max-width: 768px) {
+    .contact-container {
+        flex-direction: column;
+    }
+
+    .contact-content h1 {
+        font-size: 34px;
+    }
+
+    .contact-intro {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact {
+        padding: 40px 15px;
+    }
+
+    .contact-info,
+    .contact-form {
+        padding: 20px;
+    }
+}

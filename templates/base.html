@@ -1,9 +1,31 @@
-{% include 'header.html' %}
+{% load static %}
 
+<!DOCTYPE html>
+<html lang="en">
 
- {% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>My Website</title>
 
- {% endblock %}
+    {% block css %}
 
-{% include 'footer.html'%}
+    {% endblock %}
+</head>
+
+<body>
+
+    {% include "header.html" %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% include "footer.html" %}
+
+    {% block js %}
+
+    {% endblock %}
+
+</body>
+</html>

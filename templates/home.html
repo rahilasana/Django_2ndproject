@@ -1,10 +1,15 @@
 {% extends "base.html" %}
+{% load static %}
+{% block css %}
+ <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+{% endblock %}
 
 {% block content %}
 
 <section class="home">
 
     <div class="home-content">
+
         <h1>Welcome to Our Website</h1>
 
         <p>
@@ -15,58 +20,19 @@
         <a href="{% url 'about' %}" class="home-btn">
             Learn More
         </a>
+
+        <button class="change-btn" type="button">
+            Change Welcome
+        </button>
+
     </div>
 
 </section>
 
+{% endblock %}
 
-<style>
-    .home {
-        min-height: 550px;
-        background-color: #f2f4ff;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        text-align: center;
-        padding: 50px;
-    }
-
-    .home-content {
-        max-width: 700px;
-    }
-
-    .home-content h1 {
-        font-size: 50px;
-        color: #29295c;
-        margin-bottom: 20px;
-    }
-
-    .home-content p {
-        font-size: 18px;
-        color: #555;
-        line-height: 1.7;
-        margin-bottom: 30px;
-    }
-
-    .home-btn {
-        display: inline-block;
-        background-color: #6c63ff;
-        color: white;
-
-        padding: 13px 25px;
-        border-radius: 7px;
-
-        text-decoration: none;
-        font-size: 16px;
-    }
-
-    .home-btn:hover {
-        background-color: #4f46d8;
-    }
-</style>
+{% block js %}
+<script src="{% static 'js/home.js' %}"></script>
 {% endblock %}
 
 
-{% include "footer.html" %}

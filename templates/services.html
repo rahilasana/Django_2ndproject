@@ -1,4 +1,8 @@
 {% extends "base.html" %}
+{% load static %}
+{% block css %}
+ <link rel="stylesheet" href="{% static 'css/services.css' %}" />
+{% endblock %}
 
 {% block content %}
 
@@ -65,87 +69,8 @@
 
 </section>
 
+{% endblock %}
 
-<style>
-
-    .services {
-        min-height: 550px;
-        background-color: #f4f0ff;
-
-        padding: 70px 60px;
-        text-align: center;
-    }
-
-    .services-content {
-        max-width: 1100px;
-        margin: auto;
-    }
-
-    .services h1 {
-        font-size: 45px;
-        color: #5b21b6;
-        margin-bottom: 15px;
-    }
-
-    .services-intro {
-        font-size: 18px;
-        color: #555;
-        max-width: 700px;
-        margin: 0 auto 45px;
-        line-height: 1.7;
-    }
-
-    .service-cards {
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-    }
-
-    .service-card {
-        background-color: white;
-
-        width: 320px;
-        padding: 35px 25px;
-
-        border-radius: 12px;
-
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-
-        transition: 0.3s;
-    }
-
-    .service-card:hover {
-        transform: translateY(-8px);
-    }
-
-    .service-card h2 {
-        color: #5b21b6;
-        margin-bottom: 15px;
-    }
-
-    .service-card p {
-        color: #666;
-        line-height: 1.7;
-        margin-bottom: 25px;
-    }
-
-    .service-btn {
-        display: inline-block;
-
-        background-color: #6c63ff;
-        color: white;
-
-        padding: 10px 20px;
-        border-radius: 6px;
-
-        text-decoration: none;
-    }
-
-    .service-btn:hover {
-        background-color: #4f46d8;
-    }
-
-</style>
-
-
+{% block js %}
+<script src="{% static 'js/services.js' %}"></script>
 {% endblock %}

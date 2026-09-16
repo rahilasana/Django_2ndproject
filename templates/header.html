@@ -1,12 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>My Website</title>
+<header class="header">
 
-    <style>
+    <div class="logo">
+        My Website
+    </div>
+
+    <nav class="navbar">
+        <li class="{% if request.path == '/' %} active {% endif %}"><a href="{% url 'home' %}">Home</a></li>
+        <li class="{% if request.path == '/about/' %} active {% endif %}" ><a href="{% url 'about' %}">About</a></li>
+        <li class="{% if request.path == '/services/' %} active {% endif %}"><a href="{% url 'services'%}">Services</a></li>
+        <li class="{% if request.path == '/contact/' %} active {% endif %}"><a href="{% url 'contact'%}">Contact</a></li>
+    </nav>
+
+    <a href="#" class="header-btn">
+        Get Started
+    </a>
+        <style>
         * {
             margin: 0;
             padding: 0;
@@ -66,25 +75,5 @@
             padding:6px;
         }
     </style>
-</head>
-
-<body>
-
-<header class="header">
-
-    <div class="logo">
-        My Website
-    </div>
-
-    <nav class="navbar">
-        <li class="{% if request.path == '/' %} active {% endif %}"><a href="{% url 'home' %}">Home</a></li>
-        <li class="{% if request.path == '/about/' %} active {% endif %}" ><a href="{% url 'about' %}">About</a></li>
-        <li class="{% if request.path == '/services/' %} active {% endif %}"><a href="{% url 'services'%}">Services</a></li>
-        <li class="{% if request.path == '/contact/' %} active {% endif %}"><a href="{% url 'contact'%}">Contact</a></li>
-    </nav>
-
-    <a href="#" class="header-btn">
-        Get Started
-    </a>
 
 </header>
