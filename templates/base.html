@@ -1,31 +1,24 @@
 {% load static %}
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ {% comment %} tailwind load {% endcomment %}
+  
+    {% load tailwind_tags %}
+     {% tailwind_css %}
 
     <title>My Website</title>
 
-    {% block css %}
+    {% block css %} {% endblock %}
+  </head>
 
-    {% endblock %}
-</head>
-
-<body>
-
-    {% include "header.html" %}
-
-    {% block content %}
-    {% endblock %}
-
-    {% include "footer.html" %}
-
-    {% block js %}
-
-    {% endblock %}
-
-</body>
+  <body>
+    {% include "header.html" %} 
+    {% block content %} {% endblock %}
+     {% include "footer.html" %} 
+     {% block js %} {% endblock %}
+  </body>
 </html>
