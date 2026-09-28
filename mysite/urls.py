@@ -11,4 +11,9 @@ urlpatterns = [
     path('contact/', views.contact,name="contact"),
     
     path('__reload__/', include('django_browser_reload.urls')),
+    
+    path("student_add/", views.add_student, name="add_student"),
+    path("students/", views.students, name="students"),
+    
+    path("accounts/", include("accounts.urls")),
 ]

@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="min-h-screen bg-gray-100 px-4 py-10">
+
+    <div class="max-w-6xl mx-auto">
+
+        <div class="flex items-center justify-between mb-8">
+
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">
+                    Students
+                </h1>
+
+                <p class="text-gray-500 mt-1">
+                    All registered students
+                </p>
+            </div>
+
+            <a
+                href="{% url 'add_student' %}"
+                class="bg-blue-600 text-white px-5 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+            >
+                Add Student
+            </a>
+
+        </div>
+
+
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+
+            <table class="w-full">
+
+                <thead class="bg-gray-800 text-white">
+
+                    <tr>
+
+                        <th class="text-left px-6 py-4">
+                            ID
+                        </th>
+
+                        <th class="text-left px-6 py-4">
+                            Name
+                        </th>
+
+                        <th class="text-left px-6 py-4">
+                            Email
+                        </th>
+
+                        <th class="text-left px-6 py-4">
+                            Age
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for student in students %}
+
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+
+                        <td class="px-6 py-4 text-gray-600">
+                            {{ student.id }}
+                        </td>
+
+                        <td class="px-6 py-4 font-semibold text-gray-800">
+                            {{ student.name }}
+                        </td>
+
+                        <td class="px-6 py-4 text-gray-600">
+                            {{ student.email }}
+                        </td>
+
+                        <td class="px-6 py-4 text-gray-600">
+                            {{ student.age }}
+                        </td>
+
+                    </tr>
+
+                    {% empty %}
+
+                    <tr>
+
+                        <td
+                            colspan="4"
+                            class="text-center px-6 py-10 text-gray-500"
+                        >
+                            No students found.
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
