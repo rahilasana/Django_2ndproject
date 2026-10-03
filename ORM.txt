@@ -1,0 +1,229 @@
+CRUD mein ORM
+
+| CRUD   | Django ORM                    |
+| ------ | ----------------------------- |
+| Create | `Student.objects.create(...)` |
+| Read   | `Student.objects.all()`       |
+| Update | `student.save()`              |
+| Delete | `student.delete()`            |
+
+yahn student hum ne model bnaya hai ok!
+
+keep it in mind
+Python / Django Code
+        ↓
+      ORM
+        ↓
+      SQL
+        ↓
+    Database
+
+
+    # Django ORM
+
+## ORM kya hota hai?
+
+**ORM = Object-Relational Mapping**
+
+Django ka ORM Python code ko database ke saath connect karta hai.
+
+Simple words mein:
+
+> ORM ki madad se hum Python/Django code ke through database ke data par kaam kar sakte hain, bina har baar direct SQL query likhe.
+
+---
+
+## Django mein SQL aur ORM ka relation
+
+Normally database se baat karne ke liye SQL queries likhi ja sakti hain.
+
+Example SQL:
+
+```sql
+SELECT * FROM student;
+```
+
+Django ORM mein isi ka kaam:
+
+```python
+Student.objects.all()
+```
+
+Dono ka basic purpose same hai:
+
+**Student table ke saare records lena.**
+
+Django ORM internally Python code ko SQL query mein convert karta hai aur database se data leta hai.
+
+---
+
+## Important Point
+
+Ye kehna completely correct nahi hai ke:
+
+> "Django mein SQL queries nahi hoti."
+
+SQL queries database ke level par **hoti hain**.
+
+Difference ye hai ke Django mein hum aksar **direct SQL nahi likhte**.
+
+Hum ORM use karte hain aur Django hamare liye SQL generate karta hai.
+
+---
+
+# ORM ka Basic Flow
+
+```text
+Python / Django Code
+        ↓
+       ORM
+        ↓
+       SQL
+        ↓
+    Database
+```
+
+Example:
+
+```python
+Student.objects.all()
+```
+
+Django internally is request ko database ke liye SQL query mein convert karta hai.
+
+---
+
+# ORM aur CRUD Operations
+
+CRUD ka matlab:
+
+* **C = Create**
+* **R = Read**
+* **U = Update**
+* **D = Delete**
+
+Django ORM mein CRUD kuch is tarah hota hai:
+
+| CRUD   | Django ORM                 |
+| ------ | -------------------------- |
+| Create | `Student.objects.create()` |
+| Read   | `Student.objects.all()`    |
+| Update | `student.save()`           |
+| Delete | `student.delete()`         |
+
+---
+
+# 1. Create
+
+Naya record database mein add karne ke liye:
+
+```python
+Student.objects.create(
+    name="Ali",
+    email="ali@gmail.com",
+    age=20
+)
+```
+
+Ye Student table mein naya record create karega.
+
+---
+
+# 2. Read
+
+Table ke saare records lene ke liye:
+
+```python
+students = Student.objects.all()
+```
+
+Specific record lene ke liye:
+
+```python
+student = Student.objects.get(id=1)
+```
+
+---
+
+# 3. Update
+
+Pehle existing record ko get karte hain:
+
+```python
+student = Student.objects.get(id=1)
+```
+
+Phir uski value change karte hain:
+
+```python
+student.name = "Ahmed"
+student.email = "ahmed@gmail.com"
+student.age = 21
+```
+
+Aur `save()` karte hain:
+
+```python
+student.save()
+```
+
+`save()` database mein updated information store karta hai.
+
+---
+
+# 4. Delete
+
+Pehle record get karte hain:
+
+```python
+student = Student.objects.get(id=1)
+```
+
+Phir:
+
+```python
+student.delete()
+```
+
+Ye record database se delete kar dega.
+
+---
+
+# Example Model
+
+```python
+class Student(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    age = models.IntegerField()
+```
+
+Is model ke saath ORM use karke hum database mein:
+
+```text
+Create → Record add karna
+Read   → Record dekhna
+Update → Record change karna
+Delete → Record remove karna
+```
+
+kar sakte hain.
+
+---
+
+# Short Definition
+
+**Django ORM ek system hai jo Python/Django code ko database ke saath communicate karne mein help karta hai. Hum ORM ke methods use karte hain aur Django internally SQL queries generate karke database par operations perform karta hai.**
+
+### Important ORM Methods
+
+```python
+Student.objects.create()
+Student.objects.all()
+Student.objects.get()
+Student.objects.filter()
+student.save()
+student.delete()
+```
+
+In methods ko samajhna Django CRUD operations ke liye bohat important hai.

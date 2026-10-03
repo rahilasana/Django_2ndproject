@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login 
+from django.contrib.auth import authenticate, login ,logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 # hum ne user register krny k liye alg se koi table(model) nhi bnaya jaisy students ka bnaya tha 
@@ -17,8 +18,7 @@ def register(request):
         if password!=confirm_password:
             return render(request,'accounts/register.html',{"error":"Passwords do not match."})
         
-        # use this method for creation an object ,it will encrypted yuor password
-        
+# create_user() securely hashes the password before saving it        
         User.objects.create_user(
                 username=username,
                 password=password
@@ -48,11 +48,15 @@ def login_view(request):
         else:
             return render(request,"accounts/login.html",{'error':"invalid username or password"})
         
-    return render(request, "accounts/login.html")   
+    return render(request, "accounts/login.html") 
+def logout_view(request) :
+    logout(request)
+    return redirect('login')
+     
         
     
-    
-
+ # Only logged-in users can access profile   
+@login_required
 def profile(request):
     return render(request,"accounts/profile.html")
 
