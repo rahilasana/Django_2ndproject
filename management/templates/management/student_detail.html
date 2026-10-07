@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Details</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-gray-100">
+
+    <div class="max-w-2xl mx-auto py-10">
+
+        <div class="bg-white p-6 rounded-xl shadow">
+
+            <h1 class="text-3xl font-bold">
+                {{ student.name }}
+            </h1>
+
+
+            <!-- One-to-One -->
+            <div class="mt-6">
+
+                <h2 class="text-xl font-bold">
+                    Profile
+                </h2>
+
+                {% if profile %}
+
+                    <p class="mt-2">
+                        Phone: {{ profile.phone }}
+                    </p>
+
+                    <a href="{% url 'profile_detail' student.id %}"
+                       class="text-blue-600">
+                        View Profile
+                    </a>
+
+                {% else %}
+
+                    <p class="text-gray-500">
+                        No profile found.
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- Many-to-Many -->
+            <div class="mt-6">
+
+                <h2 class="text-xl font-bold">
+                    Courses
+                </h2>
+
+                {% if courses %}
+
+                    <ul class="list-disc ml-6 mt-2">
+
+                        {% for course in courses %}
+
+                            <li>
+                                {{ course.name }}
+                            </li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                {% else %}
+
+                    <p class="text-gray-500 mt-2">
+                        No courses found.
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
+        <a href="{% url 'student_search' %}"
+           class="inline-block mt-6 text-gray-600">
+            ← Back to Search
+        </a>
+
+    </div>
+
+</body>
+</html>

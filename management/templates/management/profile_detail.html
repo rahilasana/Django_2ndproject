@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Profile</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-gray-100">
+
+    <div class="max-w-xl mx-auto py-10">
+
+        <div class="bg-white p-6 rounded-xl shadow">
+
+            <h1 class="text-3xl font-bold">
+                {{ student.name }} - Profile
+            </h1>
+
+            <div class="mt-6">
+
+                <p>
+                    <strong>Student:</strong>
+                    {{ student.name }}
+                </p>
+
+                <p class="mt-2">
+                    <strong>Phone:</strong>
+                    {{ profile.phone }}
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <a href="{% url 'student_detail' student.id %}"
+           class="inline-block mt-6 text-gray-600">
+            ← Back to Student
+        </a>
+
+    </div>
+
+</body>
+</html>

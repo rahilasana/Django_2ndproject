@@ -20,6 +20,6 @@ urlpatterns = [
     path('update/<int:id>/', views.update, name='update_student'),
     path('delete/<int:id>/', views.delete, name='delete_student'),
     #  management app is made for relationships concepts
-    path("", include("management.urls")),
+    path("management/", include("management.urls")),
     
 ]

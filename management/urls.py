@@ -3,13 +3,27 @@ from . import views
 
 
 urlpatterns = [
-    path("student/", views.student_view, name="student"),
-    path("profile/", views.profile_view, name="profile"),
-    path("department/", views.department_view, name="department"),
-    path("teacher/", views.teacher_view, name="teacher"),
-    path("course/", views.course_view, name="course"),
-        # Product URLs
+
+    # Management home
+    path("", views.management_home, name="management_home"),
+
+    # Student search and details
+    path("students/", views.student_search, name="student_search"),
+    path("students/<int:id>/", views.student_detail, name="student_detail"),
+
+    # Teacher search and details
+    path("teachers/", views.teacher_search, name="teacher_search"),
+    path("teachers/<int:id>/", views.teacher_detail, name="teacher_detail"),
+
+    # Department search and details
+    path("departments/", views.department_search, name="department_search"),
+    path("departments/<int:id>/", views.department_detail, name="department_detail"),
+
+    # Products
     path("products/", views.product_list, name="product_list"),
-    path("products/add/", views.add_product, name="add_product"),
-    path("products/edit/<int:id>/",views.edit_product, name="edit_product"),
+    path(
+    "students/<int:id>/profile/",
+    views.profile_detail,
+    name="profile_detail"
+),
 ]

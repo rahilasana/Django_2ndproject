@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Management</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-gray-100">
+
+    <div class="max-w-4xl mx-auto py-10">
+
+        <h1 class="text-3xl font-bold mb-8">
+            Management Dashboard
+        </h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            <!-- Student -->
+            <a href="{% url 'student_search' %}"
+               class="bg-white p-6 rounded-xl shadow hover:shadow-lg">
+
+                <h2 class="text-xl font-bold">
+                    Students
+                </h2>
+
+                <p class="text-gray-600 mt-2">
+                    Search student and view courses/profile.
+                </p>
+
+            </a>
+
+
+            <!-- Teacher -->
+            <a href="{% url 'teacher_search' %}"
+               class="bg-white p-6 rounded-xl shadow hover:shadow-lg">
+
+                <h2 class="text-xl font-bold">
+                    Teachers
+                </h2>
+
+                <p class="text-gray-600 mt-2">
+                    Search teacher and view department.
+                </p>
+
+            </a>
+
+
+            <!-- Department -->
+            <a href="{% url 'department_search' %}"
+               class="bg-white p-6 rounded-xl shadow hover:shadow-lg">
+
+                <h2 class="text-xl font-bold">
+                    Departments
+                </h2>
+
+                <p class="text-gray-600 mt-2">
+                    Search department and view teachers.
+                </p>
+
+            </a>
+
+
+            <!-- Products -->
+            <a href="{% url 'product_list' %}"
+               class="bg-white p-6 rounded-xl shadow hover:shadow-lg">
+
+                <h2 class="text-xl font-bold">
+                    Products
+                </h2>
+
+                <p class="text-gray-600 mt-2">
+                    View all products.
+                </p>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

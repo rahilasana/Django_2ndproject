@@ -1,190 +1,66 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Inventory Dashboard</title>
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  </head>
+</head>
 
-  <body class="min-h-screen bg-slate-100">
-    <!-- Header -->
-    <header class="bg-white border-b border-slate-200">
-      <div
-        class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between"
-      >
-        <div>
-          <h1 class="text-2xl font-bold text-slate-800">Inventory Dashboard</h1>
+<body class="bg-gray-100">
 
-          <p class="text-sm text-slate-500 mt-1">
-            Manage your products and stock
-          </p>
-        </div>
+    <div class="max-w-4xl mx-auto py-10">
 
-        <a
-          href="{% url 'add_product' %}"
-          class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-3 rounded-xl transition"
-        >
-          + Add Product
-        </a>
-      </div>
-    </header>
+        <h1 class="text-3xl font-bold mb-6">
+            Products
+        </h1>
 
-    <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-6 py-8">
-      <!-- Summary Cards -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-        <!-- Total Products -->
-        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-          <p class="text-sm text-slate-500">Total Products</p>
-
-          <h2 class="text-3xl font-bold text-slate-800 mt-2">
-            {{ products|length }}
-          </h2>
-        </div>
-
-        <!-- Available Stock -->
-        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-          <p class="text-sm text-slate-500">Available Stock</p>
-
-          <h2 class="text-3xl font-bold text-green-600 mt-2">
-            {{ products|length }}
-          </h2>
-        </div>
-
-        <!-- Inventory Status -->
-        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-          <p class="text-sm text-slate-500">Inventory Status</p>
-
-          <h2 class="text-3xl font-bold text-blue-600 mt-2">Active</h2>
-        </div>
-      </div>
-
-      <!-- Products Table -->
-      <div
-        class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden"
-      >
-        <div class="px-6 py-5 border-b border-slate-200">
-          <h2 class="text-xl font-bold text-slate-800">Products</h2>
-        </div>
 
         {% if products %}
 
-        <div class="overflow-x-auto">
-          <table class="w-full text-left">
-            <!-- Table Header -->
-            <thead class="bg-slate-50">
-              <tr>
-                <th class="px-6 py-4 text-sm font-semibold text-slate-600">
-                  Product
-                </th>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                <th class="px-6 py-4 text-sm font-semibold text-slate-600">
-                  Category
-                </th>
+                {% for product in products %}
 
-                <th class="px-6 py-4 text-sm font-semibold text-slate-600">
-                  Price
-                </th>
+                    <div class="bg-white p-6 rounded-xl shadow">
 
-                <th class="px-6 py-4 text-sm font-semibold text-slate-600">
-                  Quantity
-                </th>
+                        <h2 class="text-xl font-bold">
+                            {{ product.name }}
+                        </h2>
 
-                <th class="px-6 py-4 text-sm font-semibold text-slate-600">
-                  Actions
-                </th>
-              </tr>
-            </thead>
+                        <p class="mt-2">
+                            Category: {{ product.category }}
+                        </p>
 
-            <!-- Table Body -->
-            <tbody class="divide-y divide-slate-200">
-              {% for product in products %}
+                        <p class="mt-2">
+                            Price: {{ product.price }}
+                        </p>
 
-              <tr class="hover:bg-slate-50 transition">
-                <!-- Product Name -->
-                <td class="px-6 py-4 font-semibold text-slate-800">
-                  {{ product.name }}
-                </td>
+                        <p class="mt-2">
+                            Quantity: {{ product.quantity }}
+                        </p>
 
-                <!-- Category -->
-                <td class="px-6 py-4 text-slate-600">{{ product.category }}</td>
+                    </div>
 
-                <!-- Price -->
-                <td class="px-6 py-4 text-slate-800 font-medium">
-                  Rs. {{ product.price }}
-                </td>
+                {% endfor %}
 
-                <!-- Quantity -->
-                <td class="px-6 py-4">
-                  {% if product.quantity <= 5 %}
-
-                  <span
-                    class="inline-flex px-3 py-1 text-sm font-medium rounded-full bg-red-100 text-red-700"
-                  >
-                    {{ product.quantity }} Low Stock
-                  </span>
-
-                  {% else %}
-
-                  <span
-                    class="inline-flex px-3 py-1 text-sm font-medium rounded-full bg-green-100 text-green-700"
-                  >
-                    {{ product.quantity }} In Stock
-                  </span>
-
-                  {% endif %}
-                </td>
-
-                <!-- Actions -->
-                <td class="px-6 py-4">
-                  <div class="flex items-center gap-2">
-                    <!-- Edit Button -->
-                    <a
-                      href="{% url 'edit_product' product.id %}"
-                      class="px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition"
-                    >
-                      Edit
-                    </a>
-
-                    <!-- Delete Button -->
-                    <a
-                      href="#"
-                      class="px-4 py-2 text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition"
-                    >
-                      Delete
-                    </a>
-                  </div>
-                </td>
-              </tr>
-
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
+            </div>
 
         {% else %}
 
-        <!-- Empty State -->
-        <div class="px-6 py-12 text-center">
-          <h3 class="text-lg font-semibold text-slate-800">
-            No products available
-          </h3>
-
-          <p class="text-slate-500 mt-2">Start by adding your first product.</p>
-
-          <a
-            href="{% url 'add_product' %}"
-            class="inline-block mt-5 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-3 rounded-xl transition"
-          >
-            Add Product
-          </a>
-        </div>
+            <p class="text-gray-500">
+                No products found.
+            </p>
 
         {% endif %}
-      </div>
-    </main>
-  </body>
+
+
+        <a href="{% url 'management_home' %}"
+           class="inline-block mt-6 text-gray-600">
+            ← Back
+        </a>
+
+    </div>
+
+</body>
 </html>

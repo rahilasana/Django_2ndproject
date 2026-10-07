@@ -31,18 +31,24 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'main',
+
     'tailwind',
     'theme',
     'django_browser_reload',
+
     "accounts",
-    "management",
+
+    # Management app
+    "management.apps.ManagementConfig",
 ]
 
 TAILWIND_APP_NAME = "theme"

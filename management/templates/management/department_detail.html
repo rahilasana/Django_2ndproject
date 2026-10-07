@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Department Details</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-gray-100">
+
+    <div class="max-w-xl mx-auto py-10">
+
+        <div class="bg-white p-6 rounded-xl shadow">
+
+            <h1 class="text-3xl font-bold">
+                {{ department.name }}
+            </h1>
+
+
+            <h2 class="text-xl font-bold mt-6">
+                Teachers
+            </h2>
+
+            {% if teachers %}
+
+                <ul class="list-disc ml-6 mt-2">
+
+                    {% for teacher in teachers %}
+
+                        <li>
+                            {{ teacher.name }}
+                        </li>
+
+                    {% endfor %}
+
+                </ul>
+
+            {% else %}
+
+                <p class="text-gray-500 mt-2">
+                    No teachers found.
+                </p>
+
+            {% endif %}
+
+        </div>
+
+
+        <a href="{% url 'department_search' %}"
+           class="inline-block mt-6 text-gray-600">
+            ← Back to Search
+        </a>
+
+    </div>
+
+</body>
+</html>

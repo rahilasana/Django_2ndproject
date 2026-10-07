@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher Details</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-gray-100">
+
+    <div class="max-w-xl mx-auto py-10">
+
+        <div class="bg-white p-6 rounded-xl shadow">
+
+            <h1 class="text-3xl font-bold">
+                {{ teacher.name }}
+            </h1>
+
+            <div class="mt-6">
+
+                <h2 class="text-xl font-bold">
+                    Department
+                </h2>
+
+                <p class="mt-2">
+                    {{ department.name }}
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <a href="{% url 'teacher_search' %}"
+           class="inline-block mt-6 text-gray-600">
+            ← Back to Search
+        </a>
+
+    </div>
+
+</body>
+</html>
