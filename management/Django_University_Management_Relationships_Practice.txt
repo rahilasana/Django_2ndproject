@@ -1,0 +1,456 @@
+DJANGO UNIVERSITY MANAGEMENT SYSTEM RELATIONSHIPS PRACTICE NOTES
+
+Purpose
+
+Ye project FYP nahi hai. Is project ka purpose Django mein database
+relationships ki practice karna hai.
+
+Hum 3 core Django relationships practice kar rahe hain:
+
+1.  One-to-One
+2.  One-to-Many
+3.  Many-to-Many
+
+================================================== 1. RELATIONSHIP
+OVERVIEW ==================================================
+
+ONE-TO-ONE Student <-> Profile
+
+Ek Student ka sirf ONE Profile. Ek Profile sirf ONE Student ka.
+
+Django field: OneToOneField
+
+ONE-TO-MANY Department -> Teacher
+
+Ek Department ke MANY Teachers ho sakte hain. Har Teacher sirf ONE
+Department se belong karta hai.
+
+Django field: ForeignKey
+
+Important rule: ForeignKey hamesha MANY side par hota hai.
+
+Memory: Ek parent, bohat children. Har child ka ek parent.
+
+MANY-TO-MANY Student <-> Course
+
+Ek Student MANY Courses mein enroll ho sakta hai. Ek Course mein MANY
+Students ho sakte hain.
+
+Django field: ManyToManyField
+
+================================================== 2. CURRENT MODELS
+==================================================
+
+from django.db import models
+
+class Department(models.Model): name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+class Teacher(models.Model): name = models.CharField(max_length=100)
+
+    department = models.ForeignKey(
+        Department,
+        on_delete=models.CASCADE
+    )
+
+    def __str__(self):
+        return self.name
+
+class Course(models.Model): name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+class Student(models.Model): name = models.CharField(max_length=100)
+
+    courses = models.ManyToManyField(Course)
+
+    def __str__(self):
+        return self.name
+
+class Profile(models.Model): student = models.OneToOneField( Student,
+on_delete=models.CASCADE )
+
+    phone = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f"{self.student.name} Profile"
+
+================================================== 3. ONE-TO-ONE
+RELATIONSHIP ==================================================
+
+Relationship:
+
+Student 1 <-> 1 Profile
+
+Field:
+
+student = models.OneToOneField( Student, on_delete=models.CASCADE )
+
+Meaning:
+
+One Student has ONE Profile. One Profile belongs to ONE Student.
+
+Forward direction:
+
+student.profile
+
+Reverse direction:
+
+profile.student
+
+Shell testing:
+
+student = Student.objects.get(name=“rahila”) student.profile
+
+Expected result:
+
+<Profile: rahila Profile>
+
+profile = Profile.objects.get(student=student) profile.student
+
+Expected result:
+
+<Student: rahila>
+
+Important: Shell mein >>> khud type nahi karna. Sirf command type karni
+hai.
+
+================================================== 4. ONE-TO-MANY
+RELATIONSHIP ==================================================
+
+Relationship:
+
+Department 1 -> MANY Teachers
+
+Field Teacher model mein hai:
+
+department = models.ForeignKey( Department, on_delete=models.CASCADE )
+
+Meaning:
+
+One Department can have MANY Teachers. Each Teacher belongs to ONE
+Department.
+
+Forward direction:
+
+teacher.department
+
+Reverse direction:
+
+department.teacher_set.all()
+
+Shell testing:
+
+Department.objects.all()
+
+department = Department.objects.get(name=“computerscience”)
+
+department.teacher_set.all()
+
+Expected result:
+
+<QuerySet [<Teacher: Mam Fatima>, <Teacher: sir Faraz>]>
+
+teacher = Teacher.objects.get(name=“Mam Fatima”)
+
+teacher.department
+
+Expected result:
+
+<Department: computerscience>
+
+Important rule:
+
+ForeignKey MANY side par hota hai.
+
+Department = ONE side Teacher = MANY side
+
+================================================== 5. MANY-TO-MANY
+RELATIONSHIP ==================================================
+
+Relationship:
+
+Student MANY <-> MANY Course
+
+Field Student model mein hai:
+
+courses = models.ManyToManyField(Course)
+
+Meaning:
+
+One Student can have MANY Courses. One Course can have MANY Students.
+
+Forward direction:
+
+student.courses.all()
+
+Reverse direction:
+
+course.student_set.all()
+
+Shell testing:
+
+student = Student.objects.get(name=“rahila”)
+
+student.courses.all()
+
+Expected result:
+
+<QuerySet [<Course: Django>, <Course: cyber security>]>
+
+Course.objects.all()
+
+course = Course.objects.get(name=“Django”)
+
+course.student_set.all()
+
+Expected result:
+
+<QuerySet [<Student: rahila>, <Student: areeba>]>
+
+================================================== 6. RELATIONSHIP
+IDENTIFICATION METHOD ==================================================
+
+Relationship identify karne ke liye hamesha dono sides dekho.
+
+Example:
+
+Student -> Profile Profile -> Student
+
+Agar: 1 Student = 1 Profile 1 Profile = 1 Student
+
+Then: OneToOneField
+
+Example:
+
+Department -> Teacher Teacher -> Department
+
+Agar: 1 Department = MANY Teachers 1 Teacher = 1 Department
+
+Then: ForeignKey
+
+Example:
+
+Student -> Course Course -> Student
+
+Agar: 1 Student = MANY Courses 1 Course = MANY Students
+
+Then: ManyToManyField
+
+Quick memory:
+
+1 <-> 1 OneToOneField
+
+1 -> MANY ForeignKey
+
+MANY <-> MANY ManyToManyField
+
+================================================== 7. ON_DELETE
+==================================================
+
+Relationships mein humne use kiya:
+
+on_delete=models.CASCADE
+
+Meaning:
+
+Agar related parent object delete ho jaye, to related child object bhi
+delete ho sakta hai.
+
+Example:
+
+Department delete | v Related Teachers delete
+
+Student delete | v Related Profile delete
+
+================================================== 8. DJANGO ADMIN
+==================================================
+
+Models ko Django Admin mein register kiya gaya:
+
+from django.contrib import admin from .models import Department,
+Teacher, Course, Student, Profile
+
+admin.site.register(Department) admin.site.register(Teacher)
+admin.site.register(Course) admin.site.register(Student)
+admin.site.register(Profile)
+
+Admin ke through:
+
+Department Teacher Course Student Profile
+
+ka CRUD/manage kiya ja sakta hai.
+
+Admin internal management ke liye hai.
+
+================================================== 9. VIEWS AND
+TEMPLATES ==================================================
+
+Application mein database data user ko directly nahi dikhaya jata.
+
+Basic flow:
+
+Browser | v URL | v View | v ORM / Database | v Template | v User
+
+Current views:
+
+def student_view(request): return render(request,
+“management/student.html”)
+
+def profile_view(request): return render(request,
+“management/profile.html”)
+
+def department_view(request): return render(request,
+“management/department.html”)
+
+def teacher_view(request): return render(request,
+“management/teacher.html”)
+
+def course_view(request): return render(request,
+“management/course.html”)
+
+Current URLs:
+
+/student/ /profile/ /department/ /teacher/ /course/
+
+================================================== 10. IMPORTANT
+APPLICATION IDEA ==================================================
+
+Har database table ka separate frontend page banana zaroori nahi.
+
+Views ka purpose application functionality provide karna hai.
+
+Relationship practice mein useful views ye honge:
+
+Student: - Apni profile - Apne enrolled courses
+
+Teacher: - Apna department - Relevant teacher data
+
+Department: - Us department ke teachers
+
+Course: - Is course mein enrolled students
+
+Example:
+
+student.profile
+
+student.courses.all()
+
+teacher.department
+
+department.teacher_set.all()
+
+course.student_set.all()
+
+================================================== 11. FUTURE
+AUTHENTICATION / AUTHORIZATION PLAN
+==================================================
+
+Project mein 3 roles sochay gaye hain:
+
+1.  Admin
+2.  Student
+3.  Teacher
+
+ADMIN
+
+Django Admin already full management access provide karta hai.
+
+Admin ko separate custom dashboard banana zaroori nahi.
+
+Admin: - Students manage kar sakta hai - Teachers manage kar sakta hai -
+Courses manage kar sakta hai - Departments manage kar sakta hai -
+Profiles manage kar sakta hai
+
+STUDENT
+
+Student login karega.
+
+Authentication: “Ye user kaun hai?”
+
+Authorization: “Is user ko kya dekhne ki permission hai?”
+
+Student ko sirf apna relevant data dikhaya jayega.
+
+Example:
+
+Student Login | v Authentication | v Student identify | v Authorization
+| v Student Dashboard | +–> Own Profile | +–> Own Courses
+
+TEACHER
+
+Teacher bhi login karega.
+
+Teacher ko apna relevant data dikhaya jayega.
+
+Example:
+
+Teacher Login | v Authentication | v Teacher identify | v Authorization
+| v Teacher Dashboard | +–> Own Department | +–> Relevant Data
+
+IMPORTANT: Abhi Student aur Teacher models Django ke built-in User model
+se connected nahi hain.
+
+Isliye proper login ke baad Django ko ye batane ke liye ke logged-in
+user kaunsa Student ya Teacher hai, future mein Student aur Teacher ko
+User model se connect karna hoga.
+
+================================================== 12. FINAL CONCEPT MAP
+==================================================
+
+                 UNIVERSITY SYSTEM
+                         |
+          +--------------+--------------+
+          |              |              |
+       Student        Teacher        Department
+          |              |              |
+          |              |              |
+       Profile       Department      MANY Teachers
+          |
+       Courses
+          ^
+          |
+       MANY-TO-MANY
+
+Relationships:
+
+Student 1 <-> 1 Profile OneToOneField
+
+Department 1 -> MANY Teacher ForeignKey
+
+Student MANY <-> MANY Course ManyToManyField
+
+Authentication / Authorization future flow:
+
+Login | v Authentication | v Identify User | +——– Admin ——–> Django
+Admin | +——– Student ——> Student Dashboard | +——– Teacher ——> Teacher
+Dashboard | v Authorization | v Allowed Data | v ORM | v Database | v
+Template | v User
+
+================================================== 13. KEY LESSONS
+==================================================
+
+1.  One-to-One: One object relates to exactly one object.
+
+2.  One-to-Many: One parent can have many children. ForeignKey MANY side
+    par hota hai.
+
+3.  Many-to-Many: Dono sides par many objects ho sakte hain.
+
+4.  Relationship samajhne ke liye dono directions check karo.
+
+5.  Admin aur custom application views different purposes rakhte hain.
+
+6.  Authentication = Who are you?
+
+7.  Authorization = What are you allowed to access?
+
+8.  Sirf login hona enough nahi. User ko correct data aur correct
+    permissions bhi deni hoti hain.
+
+9.  Relationship ka actual purpose sirf database mein field banana nahi.
+    Views aur ORM ke through relationship ko application mein use karna
+    bhi important hai.

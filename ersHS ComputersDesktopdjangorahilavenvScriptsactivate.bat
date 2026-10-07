@@ -1,0 +1,41 @@
+[33mcommit 3cd3aaf13a6718e17c3e82191d2fc1a9772a74ea[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: rahila sana <sanakhan@email.com>
+Date:   Sat Oct 3 11:38:39 2026 +0500
+
+    apply CRUD operations
+
+[33mcommit fb2400aaf2e487ea7158ce43bf00041832509e70[m
+Author: rahila sana <sanakhan@email.com>
+Date:   Mon Sep 28 11:05:28 2026 +0500
+
+    Learn Django models and authentication
+
+[33mcommit 411f2447a5bc719b9f6288824bcb84203422a20a[m
+Author: rahila sana <sanakhan@email.com>
+Date:   Mon Sep 21 09:07:33 2026 +0500
+
+    attach tailwindcss,create superuser,create Virtual Environment,add django_browser_reload for auto refresh of tailwind
+
+[33mcommit 9b7c8267fd10fdd5f7769fed75635948dbcb3705[m
+Author: rahila sana <sanakhan@email.com>
+Date:   Wed Sep 16 20:38:52 2026 +0500
+
+    add js folder
+
+[33mcommit 50f617279beaf67b1465f6887b714e81a38a17a3[m
+Author: rahila sana <sanakhan@email.com>
+Date:   Fri Sep 4 11:48:12 2026 +0500
+
+    add some features
+
+[33mcommit 3dda586c4d98c0d31101e944a407092fe0019233[m
+Author: rahila sana <sanakhan@email.com>
+Date:   Thu Sep 3 12:19:36 2026 +0500
+
+    learned using extends and block
+
+[33mcommit b3abb5f15b955db51ffd57cea4da8882ddf44b13[m
+Author: rahila sana <sanakhan@email.com>
+Date:   Wed Sep 2 18:44:48 2026 +0500
+
+    learned using include
